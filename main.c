@@ -2,17 +2,18 @@
 #include <string.h>
 
 void append(char user_array[], char letter); 
-
 void zip(char dest[],char input_array1[],char input_array2[], int length); 
 void zip_leftovers(char dest[], char user_array_stream[], int start, int finish); 
 void merge(char dest[], char user_array1[],char user_array2[] ); 
 
-int main(void) {
-  char sentence1[100]; 
-  char sentence2[100];  
-  char combined[200]; 
+#define sentence_size 350
 
-  for (int i = 0; i < 200; i++){
+int main(void) {
+  char sentence1[sentence_size]; 
+  char sentence2[sentence_size];  
+  char combined[sentence_size*2]; 
+
+  for (int i = 0; i < sentence_size*2; i++){
     combined[i] = 0; 
   }
   printf("enter your sentences: \n"); 
@@ -48,16 +49,13 @@ void merge(char dest[], char user_array1[],char user_array2[] ){
   int length2 = strlen(user_array2); 
 
   if (length1 == length2){
-    printf("\npass 1");
     zip(dest, user_array1, user_array2, length1);
   }
   else if(length1 < length2){
-    printf("\npass 2"); 
     zip(dest, user_array1, user_array2, length1);
     zip_leftovers(dest, user_array2, length1, length2); 
   }
     else{
-      printf("\npass 3"); 
     zip(dest, user_array1, user_array2, length2);
     zip_leftovers(dest, user_array1, length2, length1); 
   }
