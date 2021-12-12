@@ -5,21 +5,20 @@ void append(char user_array[], char letter);
 void zip(char dest[],char input_array1[],char input_array2[], int length); 
 void zip_leftovers(char dest[], char user_array_stream[], int start, int finish); 
 char *merge(char dest[], char user_array1[],char user_array2[] ); 
+char *reversed(char input_array[]);
 
 #define sentence_size 350
 
 int main(void) {
   char sentence1[sentence_size]; 
   char sentence2[sentence_size];  
-  char combined[sentence_size*2]; 
-
-  for (int i = 0; i < sentence_size*2; i++){
-    combined[i] = 0; 
-  }
+  char combined[sentence_size*2] = { 0 }; 
+  
   printf("enter your sentences: \n"); 
   scanf("%[^\n]%*c", sentence1); 
   scanf("%[^\n]%*c", sentence2);
-  printf("%s",merge(combined, sentence1, sentence2));
+  printf("\n%s",merge(combined, sentence1, sentence2));
+  printf("\n%s", reversed(combined));
   return 0;
 }
 
@@ -61,4 +60,14 @@ char *merge(char dest[], char user_array1[],char user_array2[] ){
   // printf("\n%s", dest); 
   char *dest_pointer = dest; 
   return dest_pointer; 
+}
+
+char *reversed(char input_array[]){
+  int length = strlen(input_array);
+  char reversed_array[sentence_size*2] = {0}; 
+  for (int i = length; i >= 0; i-- ){
+    append(reversed_array, input_array[i]);  
+  }
+  char *reversed = reversed_array; 
+  return reversed; 
 }
