@@ -4,7 +4,7 @@
 void append(char user_array[], char letter); 
 void zip(char dest[],char input_array1[],char input_array2[], int length); 
 void zip_leftovers(char dest[], char user_array_stream[], int start, int finish); 
-void merge(char dest[], char user_array1[],char user_array2[] ); 
+char *merge(char dest[], char user_array1[],char user_array2[] ); 
 
 #define sentence_size 350
 
@@ -19,8 +19,7 @@ int main(void) {
   printf("enter your sentences: \n"); 
   scanf("%[^\n]%*c", sentence1); 
   scanf("%[^\n]%*c", sentence2);
-
-  merge(combined, sentence1, sentence2); 
+  printf("%s",merge(combined, sentence1, sentence2));
   return 0;
 }
 
@@ -44,7 +43,7 @@ void zip_leftovers(char dest[], char user_array_stream[], int start, int finish)
   }
 }
 
-void merge(char dest[], char user_array1[],char user_array2[] ){
+char *merge(char dest[], char user_array1[],char user_array2[] ){
   int length1 = strlen(user_array1); 
   int length2 = strlen(user_array2); 
 
@@ -59,5 +58,7 @@ void merge(char dest[], char user_array1[],char user_array2[] ){
     zip(dest, user_array1, user_array2, length2);
     zip_leftovers(dest, user_array1, length2, length1); 
   }
-  printf("\n%s", dest); 
+  // printf("\n%s", dest); 
+  char *dest_pointer = dest; 
+  return dest_pointer; 
 }
