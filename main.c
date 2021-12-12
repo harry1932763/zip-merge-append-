@@ -17,28 +17,38 @@ int main(void) {
   printf("enter your sentences: \n"); 
   scanf("%[^\n]%*c", sentence1); 
   scanf("%[^\n]%*c", sentence2);
-  printf("\n%s",merge(combined, sentence1, sentence2));
-  printf("\n%s", reversed(combined));
+
+  printf("\n%-11s%s","combined: " ,merge(combined, sentence1, sentence2));
+  printf("\n%-11s%s","reversed: " ,reversed(combined));
   return 0;
-}
+} 
 
 void append(char user_array[], char letter){ 
+  // store the length of user_array
   int length = strlen(user_array);
-  int temp = user_array[length]; 
+  // set the last index to the element to be added
   user_array[length] = letter;  
+  // add the null character to the end of the list 
   user_array[length+1] = '\0';  
 } 
 
+// function which takes turns storing elements from 2 lists with length being the amount of pairs to store. 
 void zip(char dest[],char input_array1[],char input_array2[], int length){
+  // 0 - n where n is the length specified by the user
   for (int i = 0; i < length; i++){
-  append(dest, input_array1[i]); 
-  append(dest, input_array2[i]); 
+    // put the input_array1[i] element at the end of the destination array
+    append(dest, input_array1[i]); 
+    // put the input_array2[i] element at the end of the destination array
+    append(dest, input_array2[i]); 
   }
 }
 
+// function to store the excess elements which had no pairs 
 void zip_leftovers(char dest[], char user_array_stream[], int start, int finish){
+  // range to access indexs, the range is decided by the user with start and finish
   for (int i = start; i < finish; i++){
-  append(dest, user_array_stream[i]); 
+    //add user_array_stream[i] to the end of the destination array 
+    append(dest, user_array_stream[i]); 
   }
 }
 
@@ -57,7 +67,6 @@ char *merge(char dest[], char user_array1[],char user_array2[] ){
     zip(dest, user_array1, user_array2, length2);
     zip_leftovers(dest, user_array1, length2, length1); 
   }
-  // printf("\n%s", dest); 
   char *dest_pointer = dest; 
   return dest_pointer; 
 }
