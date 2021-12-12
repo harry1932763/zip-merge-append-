@@ -20,27 +20,8 @@ int main(void) {
   scanf("%[^\n]%*c", sentence2);
 
   merge(combined, sentence1, sentence2); 
-  // length1 = strlen(sentence1); 
-  // length2 = strlen(sentence2); 
-
-  // if (length1 == length2){
-  //   printf("\npass 1");
-  //   zip(combined, sentence1, sentence2, length1);
-  // }
-  // else if(length1 < length2){
-  //   printf("\npass 2"); 
-  //   zip(combined, sentence1, sentence2, length1);
-  //   zip_leftovers(combined, sentence2, length1, length2); 
-  // }
-  //   else{
-  //     printf("\npass 3"); 
-  //   zip(combined, sentence1, sentence2, length2);
-  //   zip_leftovers(combined, sentence1, length2, length1); 
-  // }
-  // printf("\n%s", combined); 
   return 0;
 }
-
 
 void append(char user_array[], char letter){ 
   int length = strlen(user_array);
